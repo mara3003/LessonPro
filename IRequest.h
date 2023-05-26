@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "JournalActions.h"
 
 
 using namespace std;

@@ -1,10 +1,11 @@
 ﻿#undef UNICODE
-#define _CRT_SECURE_NO_WARNINGS
+
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define WALL_H
 
 #define WIN32_LEAN_AND_MEAN
 
+#include "SendMail.h"
 
 #include <vector>
 #include <iostream>
@@ -16,16 +17,15 @@
 #include <tchar.h>
 #include <chrono>
 #include <time.h>
+#include <string>
 
-using namespace std;
 
 
 #include "DB.h"
 #include "RequestFactory.h"
-#include "SendMail.h"
+
 
 #define BUFFER_SIZE 1024
-
 
 
 #pragma comment (lib, "Ws2_32.lib")
@@ -50,24 +50,24 @@ int __cdecl main(void)
     wsaErr = WSAStartup(wVersionRequested, &wsaData);
 
     if (wsaErr != 0) {
-        cout << "The Winsock dll not found!" << endl;
+        std::cout << "The Winsock dll not found!" << endl;
         return 1;
     }
     else
     {
-        cout << "The Winsock dll found!" << endl;
-        cout << "The status: " << wsaData.szSystemStatus << endl;
+        std::cout << "The Winsock dll found!" << endl;
+        std::cout << "The status: " << wsaData.szSystemStatus << endl;
     }
 
     //server socket setup
     serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (serverSocket == INVALID_SOCKET) {
-        cout << "Error at socket(): " << WSAGetLastError() << endl;
+        std::cout << "Error at socket(): " << WSAGetLastError() << endl;
         WSACleanup();
         return 1;
     }
     else {
-        cout << "socket() is OK!" << endl;
+        std::cout << "socket() is OK!" << endl;
     }
 
     //binding
@@ -76,21 +76,21 @@ int __cdecl main(void)
     InetPton(AF_INET, "0.0.0.0", &service.sin_addr.s_addr);
     service.sin_port = htons(port);
     if (::bind(serverSocket, (SOCKADDR*)&service, sizeof(service)) ==SOCKET_ERROR) {
-        cout << "BIND() failed: " << WSAGetLastError() << endl;
+        std::cout << "BIND() failed: " << WSAGetLastError() << endl;
         closesocket(serverSocket);
         WSACleanup();
         return 0;
 
     }
     else {
-        cout << "bind is OK!\n";
+        std::cout << "bind is OK!\n";
     }
 
     if (listen(serverSocket, 1) == SOCKET_ERROR) {
-        cout << "listen(): Error listening on socket" << WSAGetLastError() << endl;
+        std::cout << "listen(): Error listening on socket" << WSAGetLastError() << endl;
     }
     else {
-        cout << "listen() is OK, waiting for connections..." << endl;
+        std::cout << "listen() is OK, waiting for connections..." << endl;
     }
 
     SOCKET activeSockets[FD_SETSIZE]{0};
@@ -104,6 +104,8 @@ int __cdecl main(void)
     SOCKET currentSocket=INVALID_SOCKET;
     fd_set readSet;
     FD_ZERO(&readSet);
+
+    int emailsSent = -1;
 
     while (TRUE) {
        
@@ -162,41 +164,48 @@ int __cdecl main(void)
                     {
                         // Clientul a închis conexiunea sau a apărut o eroare.
                         printf("Client deconectat.\n");
-                        closesocket(currentSocket);
+                        shutdown(currentSocket,2);
                         activeSockets[i] = 0;
                     }
                     else
                     {
                         // Procesare date primite.
-                        cout << "Date primite : " << buffer << endl;
+                        std::cout << "----------------NEW REQUEST----------------" << endl;
+                        std::cout << "Received data : " << buffer << endl;
                         
                         IRequest* request = RequestFactory::getRequest(buffer);
                         request->makeRequest();
-                        cout << request->sendResponse();
-                       
+                        
                         //Trimite raspunsul catre client.
                         send(currentSocket, request->sendResponse().c_str(), request->sendResponse().length(), 0);
+                        std::cout << "Sent data : " << request->sendResponse()<<endl;
 
                     }
                 }
             }
         }
-
+        
         time_t now = time(0);
         tm* ltm = localtime(&now);
+        
         ltm->tm_mon = 1 + ltm->tm_mon;
         ltm->tm_year = 1900 + ltm->tm_year;
-        if (ltm->tm_hour==19) {
-            std::vector<int> tomorrowLessons;
-            tomorrowLessons=DB::getInstance()->getTomorrowLessons(ltm);
-            for (auto i = tomorrowLessons.begin(); i < tomorrowLessons.end(); i++)
-            {
-                /*SendMail* mail=new SendMail(*i);
-                mail->initializeData();
-                mail->send();
-                delete mail;*/
-            }
+        if (ltm->tm_hour == 1)
+            emailsSent = -1;//in fiecare noapte la ora 1 se reintinitializeaza aceasta variabila
+        if (emailsSent == -1) {
 
+            if (ltm->tm_hour == 17) {
+                std::vector<int> tomorrowLessons;
+                tomorrowLessons = DB::getInstance()->getTomorrowLessons(ltm);
+                for (auto i = tomorrowLessons.begin(); i < tomorrowLessons.end(); i++)
+                {
+                    SendMail* mail = new SendMail(*i);
+                    mail->initializeData();
+                    mail->send();
+                    delete mail;
+                }
+                emailsSent = 1;
+            }
         }
         
         
@@ -211,7 +220,8 @@ int __cdecl main(void)
         }
     }
 
-    // Dezactivare Winsock.
+    // Dezactivare Winsock, deconectarea de la baza de date.
+    DB::getInstance()->disconnect();
     WSACleanup();
 
     return 0;

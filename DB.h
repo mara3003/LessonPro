@@ -29,7 +29,7 @@ public:
 
     bool createUser( User& user);
     bool addTeacher(Teacher& teacher);
-    bool verifyUserByUsernamePassword(std::string username, std::string password);
+    int verifyUserByUsernamePassword(std::string username, std::string password);
     bool addLesson(std::string Teacher, std::string usernameStud, std::string date,std::string time);
     std::string getTeacherByName(std::string Teacher);
     std::string getStudentByUsername(std::string username);
@@ -39,15 +39,14 @@ public:
     std::vector<std::string> getUserDetails(std::string username);
     std::vector<std::string> getLessonDetailsForMail(int lessonID);
     std::vector<std::string> getStudentByID(int ID);
-    std::string getTeacherByID(int ID);
+    std::vector<std::string> getTeacherByID(int ID);
     std::vector<int> getTomorrowLessons(tm* ltm);
+    std::vector<std::string> getAllStudentLesson(std::string username);
+    std::vector<std::string> getAllLessonsAdmin();
+    std::string updateLessson(int IDLesson, std::string date, std::string time);
+    std::string deleteLesson(int IDLesson);
 
-    //
-    bool userDetails(const User& user) {};
-    User getUserById(int id);
-    bool updateUser( User& user);
-    bool deleteUser(int id);
-    std::vector<User> getUsersByEmail(const std::string& email);
+   
 };
 
 

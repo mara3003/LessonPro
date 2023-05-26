@@ -1,0 +1,148 @@
+Thu May 25 15:28:41 2023
+ : Teacher added successfully.
+Thu May 25 16:26:56 2023
+ : New user registered successfully.
+Thu May 25 16:27:27 2023
+ : New user registered successfully.
+Thu May 25 16:27:35 2023
+ : Student logged in.
+Thu May 25 16:27:47 2023
+ : Thrown exception at extracting subjects from database.
+Thu May 25 16:29:40 2023
+ : Student logged in.
+Thu May 25 16:30:31 2023
+ : Thrown exception at log in.
+Thu May 25 16:30:36 2023
+ : Student logged in.
+Thu May 25 16:31:51 2023
+ : Student logged in.
+Thu May 25 16:32:16 2023
+ : Student logged in.
+Thu May 25 16:32:18 2023
+ : Thrown exception at extracting subjects from database.
+Thu May 25 16:33:06 2023
+ : Student logged in.
+Thu May 25 16:33:08 2023
+ : Thrown exception at extracting subjects from database.
+Thu May 25 16:33:19 2023
+ : ADMIN logged in.
+Thu May 25 16:33:37 2023
+ : Teacher added successfully.
+Thu May 25 16:34:02 2023
+ : Teacher added successfully.
+Thu May 25 16:34:10 2023
+ : Student logged in.
+Thu May 25 16:34:20 2023
+ : Lesson added successfully.
+Thu May 25 16:34:59 2023
+ : Student logged in.
+Thu May 25 16:35:10 2023
+ : Lesson added successfully.
+Thu May 25 16:41:10 2023
+ : Email trimis cu succes.
+Thu May 25 16:41:16 2023
+ : Email trimis cu succes.
+Thu May 25 16:41:16 2023
+ : Student logged in.
+Thu May 25 16:42:42 2023
+ : Email trimis cu succes.
+Thu May 25 16:42:45 2023
+ : Email trimis cu succes.
+Thu May 25 16:42:49 2023
+ : Student logged in.
+Thu May 25 16:44:26 2023
+ : Email trimis cu succes.
+Thu May 25 16:44:30 2023
+ : Email trimis cu succes.
+Thu May 25 16:44:32 2023
+ : Student logged in.
+Thu May 25 16:44:42 2023
+ : Lesson added successfully.
+Thu May 25 16:45:07 2023
+ : Student logged in.
+Thu May 25 16:46:52 2023
+ : Email trimis cu succes.
+Thu May 25 16:47:19 2023
+ : Email trimis cu succes.
+Thu May 25 16:47:22 2023
+ : Email trimis cu succes.
+Thu May 25 16:48:46 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:48:49 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:48:51 2023
+ : Student logged in.
+Thu May 25 16:51:16 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:51:19 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:51:21 2023
+ : Student logged in.
+Thu May 25 16:51:44 2023
+ : Lesson added successfully.
+Thu May 25 16:53:51 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:53:55 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:53:58 2023
+ : Reminder email was sent successfully.
+Thu May 25 16:53:59 2023
+ : Student logged in.
+Thu May 25 17:02:01 2023
+ : ADMIN logged in.
+Thu May 25 17:02:02 2023
+ : All lessons successfully requested by ADMIN.
+Thu May 25 17:02:15 2023
+ : Lesson updated successfully.
+Thu May 25 17:02:29 2023
+ : Student logged in.
+Thu May 25 17:03:25 2023
+ : ADMIN logged in.
+Thu May 25 17:03:32 2023
+ : Student logged in.
+Thu May 25 17:05:22 2023
+ : ADMIN logged in.
+Thu May 25 17:05:34 2023
+ : Student logged in.
+Thu May 25 17:05:39 2023
+ : Thrown exception at getting user details.
+Thu May 25 17:07:49 2023
+ : Student logged in.
+Thu May 25 17:13:45 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:13:48 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:13:51 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:13:55 2023
+ : Student logged in.
+Thu May 25 17:14:46 2023
+ : Thrown exception at adding lesson.
+Thu May 25 17:15:03 2023
+ : Eroare la cererea lectiilor pentru student.
+Thu May 25 17:15:20 2023
+ : Eroare la cererea lectiilor pentru student.
+Thu May 25 17:16:00 2023
+ : Student logged in.
+Thu May 25 17:23:22 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:23:25 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:23:29 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:23:29 2023
+ : Student logged in.
+Thu May 25 17:24:05 2023
+ : ADMIN logged in.
+Thu May 25 17:25:21 2023
+ : Teacher added successfully.
+Thu May 25 17:25:29 2023
+ : All lessons successfully requested by ADMIN.
+Thu May 25 17:26:15 2023
+ : All lessons successfully requested by ADMIN.
+Thu May 25 17:29:03 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:29:07 2023
+ : Reminder email was sent successfully.
+Thu May 25 17:29:10 2023
+ : Reminder email was sent successfully.

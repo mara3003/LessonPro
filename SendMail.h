@@ -1,14 +1,10 @@
 #pragma once
-#include <winsock.h>
-#include <string>
-#include <xapobase.h>
-#include <xapo.h>
 
 
 #define SMTP_SERVER "smtp.mail.yahoo.com"
 #define SENDER "mara_avram30@yahoo.com"
 
-
+#include <string>
 class SendMail
 {
 private:

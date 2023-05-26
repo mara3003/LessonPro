@@ -4,10 +4,16 @@
 #include <time.h>
 #include <chrono>
 #include <nanodbc/nanodbc.h>
+#include <comutil.h>
+#include <Windows.h>
+#include <fstream>
+#include "JournalActions.h"
 
 using namespace std;
 
 namespace {
+
+
     vector<string> myStrtok(string data) {
         vector<string> details;
         char delim = '/';
@@ -48,17 +54,6 @@ namespace {
         return details;
     }
 
-    tm stringToDateTime(string data) {
-
-        tm dateTime;
-        dateTime.tm_year = stoi(data.substr(0, 4));
-        dateTime.tm_mon = stoi(data.substr(5, 2)); 
-        dateTime.tm_mday = stoi(data.substr(8,2));
-        dateTime.tm_hour = stoi(data.substr(11, 2));
-        dateTime.tm_min = stoi(data.substr(15,2));
-        
-        return dateTime;
-    }
 
     std::string VectorToString(std::vector<std::string> V) {
         std::string str;
@@ -69,7 +64,7 @@ namespace {
         return str;
     }
 
-    std::string deleteBlank(std::string &str) {
+    std::string my_deleteBlank(std::string &str) {
         int i = 0;
         for (i = 0; i < str.size(); i++)
         {
@@ -79,4 +74,19 @@ namespace {
         str = str.substr(0, i);
         return str;
     }
+
+    void writeActionsFile(JournalActions* action) {
+        time_t now = time(0);
+        char* dt=ctime(&now);
+        string eroare(dt);
+        eroare += " : ";
+        eroare += action->printAction();
+        ofstream file;
+        file.open("ActionsJournal.txt", ios_base::app);
+        file << eroare;
+        file.close();
+        
+    }
+
+    
 }

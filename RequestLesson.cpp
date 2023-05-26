@@ -18,8 +18,12 @@ void RequestLesson::makeRequest()
 	int rez = DB::getInstance()->addLesson(this->Teacher, this->usernameStud, this->date,this->time);
 	if (rez == 0)
 		this->answer = "ERR";
-	else
+	else {
 		this->answer = "OK";
+		JournalActions* action = new JournalActions("Lesson added successfully.\n");
+		writeActionsFile(action);
+		delete action;
+	}
 }
 
 string RequestLesson::sendResponse()
