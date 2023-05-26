@@ -20,6 +20,9 @@ void RegisterRequest::makeRequest()
 	else {
 		this->answer = "OK";
 		cout << "OK" << endl;
+		JournalActions* action = new JournalActions("New user registered successfully.\n");
+		writeActionsFile(action);
+		delete action;
 	}
 }
 

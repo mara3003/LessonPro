@@ -6,17 +6,21 @@
 AddTeacherRequest::AddTeacherRequest(string data)
 {
 	vector<string> details;
-	details=myStrtok(data);// 2/nume/prenume/email/materie/pret
+	details=myStrtok(data);// 2/nume/prenume/materie/pret
 	teacher = new Teacher(details[1], details[2], details[3], stoi(details[4]));
 }
 
 void AddTeacherRequest::makeRequest()
 {
-	int rez = DB::getInstance()->addTeacher(*teacher);
-	if (rez == 0)
+	bool rez = DB::getInstance()->addTeacher(*teacher);
+	if (rez == false)
 		answer = "ERR";
-	else
+	else {
 		answer = "OK";
+		JournalActions* action = new JournalActions("Teacher added successfully.\n");
+		writeActionsFile(action);
+		delete action;
+	}
 }
 
 string AddTeacherRequest::sendResponse()

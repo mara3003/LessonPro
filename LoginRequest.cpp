@@ -11,26 +11,37 @@ LoginRequest::LoginRequest(string data)
     password = details[2];
 }
 
+LoginRequest::~LoginRequest()
+{
+    this->answer = "";
+    this->password = "";
+    this->username = "";
+}
+
 void LoginRequest::makeRequest()
 {
-    try {
         int rez = DB::getInstance()->verifyUserByUsernamePassword(this->username, this->password);
-        cout << rez<<endl;
+       
         if (rez==0)
             answer = "ERR";
         else {
             if (rez == -1)
+            {
                 answer = "ADMIN";
-            else
+                JournalActions* action = new JournalActions("ADMIN logged in.\n");
+                writeActionsFile(action);
+                delete action;
+            }
+            else {
                 answer = "OK";
+                JournalActions* action = new JournalActions("Student logged in.\n");
+                writeActionsFile(action);
+                delete action;
+            }
+
             
         }
-    }
-    catch (nanodbc::database_error err) {
-        cout << err.what()<<endl;
-    }
-
-
+        cout << "Rezultatul functiei de logare: " << answer << endl;
 }
 
 string LoginRequest::sendResponse()

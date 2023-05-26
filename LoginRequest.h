@@ -11,7 +11,7 @@ private:
 
 public:
 	LoginRequest(string);
-	~LoginRequest() {}
+	~LoginRequest();
 
 	void makeRequest() override;
 	string sendResponse() override;

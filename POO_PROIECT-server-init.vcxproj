@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\vcpkg\installed\x64-windows\include\nanodbc;C:\Users\HOME\source\repos\POO_PROIECT-server-init\packages\Aspose.Email.Cpp.23.4.0\build\native\include\Aspose.Email.Cpp;C:\Users\HOME\source\repos\POO_PROIECT-server-init\packages\Aspose.Email.Cpp.23.4.0\build\native\lib\x64\Debug</IncludePath>
+    <IncludePath>C:\vcpkg\installed\x64-windows\include\nanodbc;C:\Users\HOME\AppData\Local\Programs\Python\Python311\include;C:\Users\HOME\AppData\Local\Programs\Python\Python311\libs;C:\Users\HOME\AppData\Local\Programs\Python\Python311\libs\python311_d.lib</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -105,7 +105,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;odbc32.lib;nanodbc.lib;</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;odbc32.lib;nanodbc.lib;python311_d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,12 +137,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddTeacherRequest.cpp" />
+    <ClCompile Include="AllLessonsAdminRequest.cpp" />
+    <ClCompile Include="AllStudentsLessonRequest.cpp" />
     <ClCompile Include="DB.cpp" />
+    <ClCompile Include="DeleteLessonAdminRequest.cpp" />
+    <ClCompile Include="ErrAddLesson.cpp" />
+    <ClCompile Include="ErrAddTeacher.cpp" />
+    <ClCompile Include="ErrAllLessonForStudent.cpp" />
+    <ClCompile Include="ErrDeleteLesson.cpp" />
+    <ClCompile Include="ErrGetSubjects.cpp" />
+    <ClCompile Include="ErrGetTeacher.cpp" />
+    <ClCompile Include="ErrGetUserDetails.cpp" />
+    <ClCompile Include="ErrLogin.cpp" />
+    <ClCompile Include="ErrRegister.cpp" />
+    <ClCompile Include="ErrUpdateLesson.cpp" />
+    <ClCompile Include="ExceptionFactory.cpp" />
     <ClCompile Include="GetAllSubjectRequest.cpp" />
     <ClCompile Include="GetFreeHoursByDataRequest.cpp" />
     <ClCompile Include="GetTeachersBySubjectRequest.cpp" />
     <ClCompile Include="GetUserDetailsRequest.cpp" />
+    <ClCompile Include="IException.cpp" />
     <ClCompile Include="IRequest.cpp" />
+    <ClCompile Include="JournalActions.cpp" />
     <ClCompile Include="LoginRequest.cpp" />
     <ClCompile Include="RegisterRequest.cpp" />
     <ClCompile Include="RequestFactory.cpp" />
@@ -150,27 +166,49 @@
     <ClCompile Include="SendMail.cpp" />
     <ClCompile Include="server-init.cpp" />
     <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="UpdateLessonRequest.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddTeacherRequest.h" />
+    <ClInclude Include="AllLessonsAdminRequest.h" />
+    <ClInclude Include="AllStudentsLessonRequest.h" />
     <ClInclude Include="DB.h" />
+    <ClInclude Include="DeleteLessonAdminRequest.h" />
+    <ClInclude Include="ErrAddLesson.h" />
+    <ClInclude Include="ErrAddTeacher.h" />
+    <ClInclude Include="ErrAllLessonForStudent.h" />
+    <ClInclude Include="ErrDeleteLesson.h" />
+    <ClInclude Include="ErrGetSubjects.h" />
+    <ClInclude Include="ErrGetTeacher.h" />
+    <ClInclude Include="ErrGetUserDetails.h" />
+    <ClInclude Include="ErrLogin.h" />
+    <ClInclude Include="ErrRegister.h" />
+    <ClInclude Include="ErrUpdateLesson.h" />
+    <ClInclude Include="ExceptionFactory.h" />
     <ClInclude Include="GetAllSubjectRequest.h" />
     <ClInclude Include="GetFreeHoursByDataRequest.h" />
     <ClInclude Include="GetTeachersBySubjectRequest.h" />
     <ClInclude Include="GetUserDetailsRequest.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="IException.h" />
     <ClInclude Include="IRequest.h" />
+    <ClInclude Include="JournalActions.h" />
     <ClInclude Include="LoginRequest.h" />
     <ClInclude Include="RegisterRequest.h" />
     <ClInclude Include="RequestFactory.h" />
     <ClInclude Include="RequestLesson.h" />
     <ClInclude Include="SendMail.h" />
     <ClInclude Include="Teacher.h" />
+    <ClInclude Include="UpdateLessonRequest.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="SendGmail.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ActionsJournal.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
